@@ -22,7 +22,7 @@ class SearchBar extends Component {
           <input
             className="form-control"
             type="text"
-            value={this.state.value}
+            value={this.state.query}
             onChange={this.handleChange}
           />
           <div className="input-group-append">
