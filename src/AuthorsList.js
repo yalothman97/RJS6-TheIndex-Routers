@@ -26,11 +26,11 @@ class AuthorsList extends Component {
 
   render() {
     const authorCards = this.state.filteredAuthors.map(author => (
-      <AuthorCard key={author.first_name + author.last_name} author={author} />
+      <AuthorCard key={author.id} author={author} />
     ));
 
     return (
-      <div className="authors">
+      <div>
         <h3>Authors</h3>
         <SearchBar changeHandler={this.filterAuthors} />
         <div className="row">{authorCards}</div>

@@ -17,7 +17,7 @@ class App extends Component {
     super(props);
     this.state = {
       authors: [],
-      loading: true
+      authorsLoading: true
     };
   }
 
@@ -30,14 +30,14 @@ class App extends Component {
       .then(authors =>
         this.setState({
           authors: authors,
-          loading: false
+          authorsLoading: false
         })
       )
       .catch(err => console.error(err));
   }
 
   getView() {
-    if (this.state.loading) {
+    if (this.state.authorsLoading) {
       return <Loading />;
     } else {
       return (
