@@ -16,11 +16,9 @@ class AuthorsList extends Component {
 
   filterAuthors(query) {
     query = query.toLowerCase();
-    let filteredAuthors = this.props.authors.filter(author => {
-      return `${author.first_name} ${author.last_name}`
-        .toLowerCase()
-        .includes(query);
-    });
+    let filteredAuthors = this.props.authors.filter(author =>
+      `${author.first_name} ${author.last_name}`.toLowerCase().includes(query)
+    );
     this.setState({ filteredAuthors });
   }
 
