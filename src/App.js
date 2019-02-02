@@ -15,7 +15,7 @@ const instance = axios.create({
 class App extends Component {
   state = {
     authors: [],
-    authorsLoading: true
+    loading: true
   };
 
   fetchAllAuthors = async () => {
@@ -28,7 +28,7 @@ class App extends Component {
       const authors = await this.fetchAllAuthors();
       this.setState({
         authors: authors,
-        authorsLoading: false
+        loading: false
       });
     } catch (err) {
       console.error(err);
@@ -36,7 +36,7 @@ class App extends Component {
   }
 
   getView = () => {
-    if (this.state.authorsLoading) {
+    if (this.state.loading) {
       return <Loading />;
     } else {
       return (
