@@ -5,22 +5,17 @@ import AuthorCard from "./AuthorCard";
 import SearchBar from "./SearchBar";
 
 class AuthorsList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      filteredAuthors: this.props.authors
-    };
+  state = {
+    filteredAuthors: this.props.authors
+  };
 
-    this.filterAuthors = this.filterAuthors.bind(this);
-  }
-
-  filterAuthors(query) {
+  filterAuthors = query => {
     query = query.toLowerCase();
     let filteredAuthors = this.props.authors.filter(author =>
       `${author.first_name} ${author.last_name}`.toLowerCase().includes(query)
     );
-    this.setState({ filteredAuthors });
-  }
+    this.setState({ filteredAuthors: filteredAuthors });
+  };
 
   render() {
     const authorCards = this.state.filteredAuthors.map(author => (

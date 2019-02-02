@@ -13,30 +13,29 @@ const instance = axios.create({
 });
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      authors: [],
-      authorsLoading: true
-    };
+  state = {
+    authors: [],
+    authorsLoading: true
+  };
+
+  fetchAllAuthors = async () => {
+    const res = await instance.get("/api/authors/");
+    return res.data;
+  };
+
+  async componentDidMount() {
+    try {
+      const authors = await this.fetchAllAuthors();
+      this.setState({
+        authors: authors,
+        authorsLoading: false
+      });
+    } catch (err) {
+      console.error(err);
+    }
   }
 
-  fetchAllAuthors() {
-    return instance.get("/api/authors/").then(res => res.data);
-  }
-
-  componentDidMount() {
-    this.fetchAllAuthors()
-      .then(authors =>
-        this.setState({
-          authors: authors,
-          authorsLoading: false
-        })
-      )
-      .catch(err => console.error(err));
-  }
-
-  getView() {
+  getView = () => {
     if (this.state.authorsLoading) {
       return <Loading />;
     } else {
@@ -53,7 +52,7 @@ class App extends Component {
         </Switch>
       );
     }
-  }
+  };
 
   render() {
     return (

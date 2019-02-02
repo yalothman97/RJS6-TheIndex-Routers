@@ -10,13 +10,10 @@ const instance = axios.create({
 });
 
 class AuthorDetail extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      author: {},
-      loading: true
-    };
-  }
+  state = {
+    author: null,
+    loading: true
+  };
 
   componentDidMount() {
     this.getAuthor();
@@ -28,15 +25,20 @@ class AuthorDetail extends Component {
     }
   }
 
-  getAuthor() {
+  getAuthor = async () => {
     const authorID = this.props.match.params.authorID;
     this.setState({ loading: true });
-    instance
-      .get(`/api/authors/${authorID}`)
-      .then(res => res.data)
-      .then(author => this.setState({ author: author, loading: false }))
-      .catch(err => console.error(err));
-  }
+    try {
+      const res = await instance.get(`/api/authors/${authorID}`);
+      const author = res.data;
+      this.setState({
+        author: author,
+        loading: false
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   render() {
     if (this.state.loading) {
