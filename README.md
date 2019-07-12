@@ -33,7 +33,7 @@ $ yarn start
 
 #### 2. Fetch All Books
 
-1. In `App.js`, fetch all the books from the following API: `https://the-index-api.herokuapp.com/api/books/`  (try it using Postman)
+1. In `App.js`, fetch all the books from the following API: `https://the-index-api.herokuapp.com/api/books/`
 (Hint: this will be almost identical to how the authors are being fetched in `componentDidMount`)
 
 #### 3. `BookList` Components
