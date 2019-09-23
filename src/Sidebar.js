@@ -7,10 +7,18 @@ import logo from "./assets/theindex.svg";
 function Sidebar() {
   return (
     <div id="sidebar">
-      <img src={logo} className="logo" alt="the index logo" />
+      <NavLink to="/">
+        <img src={logo} className="logo" alt="the index logo" />
+      </NavLink>
       <section>
         <h4 className="menu-item">
-          <NavLink to="/authors">AUTHORS</NavLink>
+          <div>
+            <NavLink to="/authors">AUTHORS</NavLink>
+          </div>
+          <br />
+          <div>
+            <NavLink to="/books">BOOKS</NavLink>
+          </div>
         </h4>
       </section>
     </div>

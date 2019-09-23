@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import axios from "axios";
-
+import BookList from "./BookList";
 // Components
 import Sidebar from "./Sidebar";
 import Loading from "./Loading";
@@ -15,20 +15,27 @@ const instance = axios.create({
 class App extends Component {
   state = {
     authors: [],
-    loading: true
+    loading: true,
+    books: []
   };
 
   fetchAllAuthors = async () => {
     const res = await instance.get("/api/authors/");
     return res.data;
   };
-
+  fetchAllBooks = async () => {
+    const res = await instance.get("/api/books/");
+    return res.data;
+  };
   async componentDidMount() {
     try {
       const authors = await this.fetchAllAuthors();
+      const books = await this.fetchAllBooks();
+
       this.setState({
         authors: authors,
-        loading: false
+        loading: false,
+        books: books
       });
     } catch (err) {
       console.error(err);
@@ -48,6 +55,12 @@ class App extends Component {
             render={props => (
               <AuthorsList {...props} authors={this.state.authors} />
             )}
+          />
+
+          <Route
+            exact
+            path="/books/:color?"
+            render={props => <BookList {...props} books={this.state.books} />}
           />
         </Switch>
       );
